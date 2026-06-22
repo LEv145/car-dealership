@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Автосалон{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+        header {
+            background: #1e3a8a;
+            color: white;
+            padding: 16px 24px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 16px;
+        }
+        main {
+            padding: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+        }
+        .actions a,
+        .button,
+        button {
+            display: inline-block;
+            padding: 8px 12px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 8px;
+        }
+        .button-danger {
+            background: #dc2626;
+        }
+        .filters {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        input, select {
+            padding: 8px;
+            min-width: 220px;
+        }
+        .muted {
+            color: #6b7280;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        .detail-table td:first-child {
+            width: 280px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Автосалон</h1>
+    <nav>
+        <a href="{% url 'dealership:home' %}">Главная</a>
+        <a href="{% url 'dealership:country-list' %}">Страны</a>
+        <a href="{% url 'dealership:color-list' %}">Цвета</a>
+        <a href="{% url 'dealership:firm-list' %}">Фирмы</a>
+        <a href="{% url 'dealership:car-list' %}">Автомобили</a>
+        <a href="{% url 'dealership:product-list' %}">Товары</a>
+        <a href="{% url 'dealership:seller-list' %}">Продавцы</a>
+        <a href="{% url 'dealership:buyer-list' %}">Покупатели</a>
+        <a href="{% url 'dealership:sale-act-list' %}">Продажи</a>
+    </nav>
+</header>
+<main>
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

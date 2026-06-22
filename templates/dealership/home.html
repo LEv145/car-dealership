@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Главная</h2>
+    <p>Демонстрационное MVP для работы с базой данных автосалона.</p>
+</div>
+
+<div class="grid">
+    <div class="card"><a href="{% url 'dealership:country-list' %}">Страны</a></div>
+    <div class="card"><a href="{% url 'dealership:color-list' %}">Цвета</a></div>
+    <div class="card"><a href="{% url 'dealership:firm-list' %}">Фирмы</a></div>
+    <div class="card"><a href="{% url 'dealership:car-list' %}">Автомобили</a></div>
+    <div class="card"><a href="{% url 'dealership:product-list' %}">Товары</a></div>
+    <div class="card"><a href="{% url 'dealership:seller-list' %}">Продавцы</a></div>
+    <div class="card"><a href="{% url 'dealership:buyer-list' %}">Покупатели</a></div>
+    <div class="card"><a href="{% url 'dealership:sale-act-list' %}">Акты продажи</a></div>
+</div>
+{% endblock %}

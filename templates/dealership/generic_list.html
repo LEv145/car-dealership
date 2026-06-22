@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="actions">
+        <a href="{{ create_url }}">Добавить</a>
+    </div>
+
+    <h2>{{ title }}</h2>
+
+    <form method="get" class="filters">
+        <input
+            type="text"
+            name="q"
+            value="{{ search_query }}"
+            placeholder="Поиск"
+        >
+
+        {% if countries %}
+            <select name="country">
+                <option value="">Все страны</option>
+                {% for country in countries %}
+                    <option
+                        value="{{ country.id }}"
+                        {% if selected_country == country.id|stringformat:"s" %}selected{% endif %}
+                    >
+                        {{ country.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        {% endif %}
+
+        {% if firms %}
+            <select name="firm">
+                <option value="">Все фирмы</option>
+                {% for firm in firms %}
+                    <option
+                        value="{{ firm.id }}"
+                        {% if selected_firm == firm.id|stringformat:"s" %}selected{% endif %}
+                    >
+                        {{ firm.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        {% endif %}
+
+        {% if colors %}
+            <select name="color">
+                <option value="">Все цвета</option>
+                {% for color in colors %}
+                    <option
+                        value="{{ color.id }}"
+                        {% if selected_color == color.id|stringformat:"s" %}selected{% endif %}
+                    >
+                        {{ color.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        {% endif %}
+
+        {% if sellers %}
+            <select name="seller">
+                <option value="">Все продавцы</option>
+                {% for seller in sellers %}
+                    <option
+                        value="{{ seller.id }}"
+                        {% if selected_seller == seller.id|stringformat:"s" %}selected{% endif %}
+                    >
+                        {{ seller.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        {% endif %}
+
+        {% if title == "Товары" %}
+            <select name="sold">
+                <option value="">Все товары</option>
+                <option value="yes" {% if selected_sold == "yes" %}selected{% endif %}>
+                    Только проданные
+                </option>
+                <option value="no" {% if selected_sold == "no" %}selected{% endif %}>
+                    Только непроданные
+                </option>
+            </select>
+        {% endif %}
+
+        <button type="submit">Применить</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                {% for column in columns %}
+                    <th>{{ column.title }}</th>
+                {% endfor %}
+                <th>Действия</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for row in table_rows %}
+                <tr>
+                    {% for cell in row.cells %}
+                        <td>
+                            {% if forloop.first %}
+                                <a href="{{ row.object.get_absolute_url }}">
+                                    {{ cell }}
+                                </a>
+                            {% else %}
+                                {{ cell }}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+
+                    <td class="actions">
+                        <a href="{{ row.object.get_absolute_url }}">Открыть</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="20" class="muted">
+                        Записи не найдены.
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if is_paginated %}
+        <div class="actions" style="margin-top: 16px;">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">Назад</a>
+            {% endif %}
+
+            <span class="muted">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Вперёд</a>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+[project]
+name = "car-dealership"
+version = "0.1.0"
+description = "MVP Django application for car dealership database"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "django>=5.2",
+    "django-stubs-ext>=6.0.5",
+    "psycopg[binary]>=3.2",
+    "python-dotenv>=1.0",
+]
+
+[dependency-groups]
+dev = [
+    "django-stubs>=5.1",
+    "mypy>=1.11",
+    "ruff>=0.6",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py314"
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+strict = true
+
+[tool.django-stubs]
+django_settings_module = "config.settings"
