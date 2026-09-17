@@ -8,18 +8,18 @@ The project focuses on relational data modeling, reusable class-based views, ser
 
 ## Features
 
-- CRUD for countries, colors, manufacturers, cars, products, buyers, sellers, and sale acts;
-- search across entity lists;
-- filters for related entities and inventory state;
-- pagination for list views;
-- navigation through relational data;
-- domain-level validation for prices, dimensions, engine power, colors, and sales;
-- PostgreSQL-backed persistence;
-- reusable generic views and templates for common CRUD operations;
-- environment-based configuration;
-- Docker Compose setup for the local PostgreSQL database;
-- strict static type checking with `mypy` and `django-stubs`;
-- code quality checks with `ruff`.
+- CRUD for countries, colors, manufacturers, cars, products, buyers, sellers, and sale acts
+- Search across entity lists
+- Filters for related entities and inventory state
+- Pagination for list views
+- Navigation through relational data
+- Domain-level validation for prices, dimensions, engine power, colors, and sales
+- PostgreSQL-backed persistence
+- Reusable generic views and templates for common CRUD operations
+- Environment-based configuration
+- Docker Compose setup for the local PostgreSQL database
+- Strict static type checking with `mypy` and `django-stubs`
+- Code quality checks with `ruff`
 
 ## Tech Stack
 
@@ -52,13 +52,13 @@ erDiagram
 
 Main entities:
 
-- `Country` — country reference data;
-- `Color` — car color with a validated HEX value;
-- `Firm` — manufacturer linked to a country;
-- `Car` — vehicle model with manufacturer, country, color, dimensions, engine power, and release year;
-- `Product` — dealership inventory item with a price;
-- `Buyer` and `Seller` — participants in a sale;
-- `SaleAct` — completed sale linking a product, buyer, seller, and timestamp.
+- `Country` — country reference data
+- `Color` — car color with a validated HEX value
+- `Firm` — manufacturer linked to a country
+- `Car` — vehicle model with manufacturer, country, color, dimensions, engine power, and release year
+- `Product` — dealership inventory item with a price
+- `Buyer` and `Seller` — participants in a sale
+- `SaleAct` — completed sale linking a product, buyer, seller, and timestamp
 
 Application-level validation prevents the same product from being sold more than once.
 
@@ -78,29 +78,29 @@ The UI provides a single navigation layer across the main entities, searchable/f
 
 The overview image above shows:
 
-- the application home page;
-- the car list with filtering controls;
-- the sale creation form;
-- the Django admin panel.
+- The application home page
+- The car list with filtering controls
+- The sale creation form
+- The Django admin panel
 
 ## Search and Filtering
 
 Examples of supported filtering:
 
-- manufacturers by country;
-- cars by manufacturer and color;
-- products by sold / available status;
-- sale acts by seller;
-- text search for names and car models.
+- Manufacturers by country
+- Cars by manufacturer and color
+- Products by sold / available status
+- Sale acts by seller
+- Text search for names and car models
 
 ## Validation
 
 The domain model contains validation rules such as:
 
-- HEX colors must use the `#RRGGBB` format;
-- car engine power, length, and width must be positive;
-- product price must be positive;
-- one product cannot be referenced by multiple sale acts.
+- HEX colors must use the `#RRGGBB` format
+- Car engine power, length, and width must be positive
+- Product price must be positive
+- One product cannot be referenced by multiple sale acts
 
 ## Local Development
 
