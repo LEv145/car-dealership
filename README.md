@@ -4,6 +4,8 @@ A Django + PostgreSQL web application for managing a car dealership domain: cars
 
 The project focuses on relational data modeling, reusable class-based views, server-side filtering/search, domain validation, and a simple local development setup.
 
+![Application overview](docs/images/app-overview.jpg)
+
 ## Features
 
 - CRUD for countries, colors, manufacturers, cars, products, buyers, sellers, and sale acts;
@@ -31,6 +33,10 @@ The project focuses on relational data modeling, reusable class-based views, ser
 - **Ruff**
 
 ## Domain Model
+
+The application is built around eight related entities covering reference data, the vehicle catalog, inventory, and sales.
+
+![Database schema](docs/images/database-schema.jpg)
 
 ```mermaid
 erDiagram
@@ -65,6 +71,17 @@ The application uses Django class-based views and a small set of reusable abstra
 Entity-specific views extend these abstractions and add their own queryset optimizations and filters. Related objects are loaded with `select_related()` where appropriate to avoid unnecessary database queries.
 
 The project uses server-rendered Django templates and PostgreSQL as the primary database.
+
+## User Interface
+
+The UI provides a single navigation layer across the main entities, searchable/filterable lists, detail pages, create/update forms, delete confirmation, and the standard Django admin interface.
+
+The overview image above shows:
+
+- the application home page;
+- the car list with filtering controls;
+- the sale creation form;
+- the Django admin panel.
 
 ## Search and Filtering
 
@@ -157,6 +174,7 @@ car-dealership/
 ├── config/             # Django project configuration
 ├── dealership/         # Domain models, forms, views and URL routes
 ├── database/           # Local PostgreSQL Docker Compose setup
+├── docs/images/        # Screenshots and diagrams used in the README
 ├── templates/          # Server-rendered templates
 ├── .env.example        # Development environment template
 ├── manage.py
